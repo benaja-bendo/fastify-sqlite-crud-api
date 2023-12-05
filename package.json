@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx ts-node src/index.ts",
+    "start": "nodemon",
     "build": "npx tsc",
     "preview": "npx tsc && node dist/index.js"
   },
@@ -14,6 +14,7 @@
   "dependencies": {
     "@types/node": "^20.10.3",
     "fastify": "^4.24.3",
+    "nodemon": "^3.0.2",
     "typescript": "^5.3.2"
   }
 }
