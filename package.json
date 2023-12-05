@@ -1,0 +1,19 @@
+{
+  "name": "fastify-crud-sqlite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx ts-node src/index.ts",
+    "build": "npx tsc",
+    "preview": "npx tsc && node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.10.3",
+    "fastify": "^4.24.3",
+    "typescript": "^5.3.2"
+  }
+}
