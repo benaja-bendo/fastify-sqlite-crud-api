@@ -10,7 +10,7 @@ Assurez-vous d'avoir Node.js dans sa version recommandée (LTS) installé sur vo
 
 1. Clonez ce dépôt :
    ```bash
-   git clone 
+   git clone https://github.com/benaja-bendo/fastify-sqlite-crud-api.git
    ```
 
 2. Accédez au répertoire du projet :
