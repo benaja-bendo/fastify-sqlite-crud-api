@@ -1,24 +1,46 @@
-// Importer le modèle ici si nécessaire
+import SQLiteDB from "../db/SQLiteDB";
+import {Sequelize} from 'sequelize';
+import {User} from "../models/userModel";
 
 class UserService {
-  getAllUsers() {
-    // Logique pour récupérer tous les utilisateurs depuis la base de données
-  }
+    private db: Sequelize | null = null;
 
-  getUserById(userId: number) {
-    // Logique pour récupérer un utilisateur par ID depuis la base de données
-  }
+    constructor() {
+        const dbInstance = SQLiteDB.getInstance();
+        this.db = dbInstance.getDB();
+    }
 
-  createUser(userData: any) {
-    // Logique pour créer un nouvel utilisateur dans la base de données
-  }
+    async getAllUsers() {
+        try {
+            return await User.findAll();
+        } catch (error) {
+            console.log('une erreur est survenue lors de la récupération des utilisateurs', error);
+            return [];
+        }
+    }
 
-  updateUser(userId: number, userData: any) {
-    // Logique pour mettre à jour un utilisateur dans la base de données
-  }
+    getUserById(userId: number) {
+        // Logique pour récupérer un utilisateur par ID depuis la base de données
+    }
 
-  deleteUser(userId: number) {
-    // Logique pour supprimer un utilisateur de la base de données
-  }
+    async createUser(userData: any) {
+        try {
+            const user = await User.create(userData);
+            await user.save();
+            return user;
+        } catch (error) {
+            console.log('Une erreur est survenue lors de la création de l\'utilisateur', error);
+            return null;
+        }
+    }
+
+    updateUser(userId: number, userData: any) {
+        // Logique pour mettre à jour un utilisateur dans la base de données
+    }
+
+    deleteUser(userId: number) {
+        // Logique pour supprimer un utilisateur de la base de données
+    }
 }
+
 export default new UserService();
