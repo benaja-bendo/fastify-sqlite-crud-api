@@ -1,10 +1,14 @@
-import { Sequelize } from 'sequelize';
-import path from 'path';
+import { Sequelize } from "sequelize";
+import path from "path";
 
-class SQLiteDB {
+type SequelizeDialect = 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql';
+
+export default class SQLiteDB {
   private static instance: SQLiteDB;
   private db: Sequelize | null = null;
-  private readonly dbPath = path.join(__dirname, "../../database.db");
+  private readonly dbPath =
+    process.env.DB_PATH || path.resolve(__dirname, "../../db/db.sqlite");
+  private readonly dbConnection = (process.env.DB_CONNECTION || "sqlite") as SequelizeDialect;
 
   private constructor() {
     this.init();
@@ -12,8 +16,9 @@ class SQLiteDB {
 
   private init() {
     this.db = new Sequelize({
-      dialect: 'sqlite',
+      dialect: this.dbConnection,
       storage: this.dbPath,
+      logging: process.env.APP_DEBUG === "true",
     });
   }
 
@@ -28,5 +33,3 @@ class SQLiteDB {
     return this.db;
   }
 }
-
-export default SQLiteDB;
