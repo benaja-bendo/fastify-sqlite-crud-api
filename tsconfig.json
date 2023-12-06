@@ -13,5 +13,5 @@
     "moduleResolution": "node",
     "jsx": "preserve"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "env.d.ts"]
 }
